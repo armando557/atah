@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass p-5">
+
+    <h1 class="fw-bold mb-4">
+
+        {% if request.GET.modo == 'editar' %}
+            Editar operadores
+        {% elif request.GET.modo == 'baja' %}
+            Dar de baja operadores
+        {% else %}
+            Buscar operadores
+        {% endif %}
+
+    </h1>
+
+    <form method="GET" class="mb-5">
+
+        {% if request.GET.modo %}
+            <input type="hidden"
+                   name="modo"
+                   value="{{ request.GET.modo }}">
+        {% endif %}
+
+        <input
+            type="text"
+            name="buscar"
+            class="form-control bg-dark text-white border-0 p-3"
+            placeholder="Buscar por nombre, RFC, CURP, teléfono..."
+            value="{{ request.GET.buscar }}"
+        >
+
+    </form>
+
+    <div class="table-responsive">
+
+        <table class="table table-dark table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Ciudad</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for operador in operadores %}
+
+                <tr>
+
+                    <td>{{ operador.nombre }}</td>
+                    <td>{{ operador.telefono }}</td>
+                    <td>{{ operador.ciudad }}</td>
+                    <td>{{ operador.estado }}</td>
+
+                    <td>
+
+                        <!-- SOLO EDITAR -->
+
+                        {% if request.GET.modo == 'editar' %}
+
+                        <a href="{% url 'editar' operador.id %}"
+                           class="btn btn-warning btn-sm">
+
+                           Editar
+
+                        </a>
+
+                        {% endif %}
+
+                        <!-- SOLO BAJA -->
+
+                        {% if request.GET.modo == 'baja' %}
+
+                        <a href="{% url 'eliminar' operador.id %}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Seguro que deseas dar de baja este operador?')">
+
+                           Dar Baja
+
+                        </a>
+
+                        {% endif %}
+
+                        <!-- MODO NORMAL -->
+
+                        {% if not request.GET.modo %}
+
+                        <a href="{% url 'editar' operador.id %}"
+                           class="btn btn-warning btn-sm">
+
+                           Editar
+
+                        </a>
+
+                        <a href="{% url 'eliminar' operador.id %}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Seguro que deseas dar de baja este operador?')">
+
+                           Baja
+
+                        </a>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="5" class="text-center text-secondary">
+
+                        No se encontraron operadores
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

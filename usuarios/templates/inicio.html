@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass">
+
+    <h1 class="hero-title">
+        Sistema de Operadores - Reclutamiento
+    </h1>
+
+    <p class="hero-subtitle">
+        Panel interno de administración y control de operadores
+    </p>
+
+    <!-- REQUISITOS EMPRESA -->
+
+    <div class="glass mb-5 p-4">
+
+        <div class="d-flex align-items-center mb-4">
+
+            <i class="bi bi-file-earmark-check-fill me-3"
+               style="font-size: 35px; color: #60a5fa;"></i>
+
+            <div>
+
+                <h3 class="fw-bold mb-1">
+                    Requisitos solicitados por la empresa
+                </h3>
+
+                <p class="text-secondary mb-0">
+                    Información requerida para el proceso de reclutamiento
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="requirements-grid">
+
+            <div class="requirement-card">
+                <i class="bi bi-person-badge"></i>
+                <span>
+                    Operadores con más de 5 años de antigüedad comprobable
+                </span>
+            </div>
+
+            <div class="requirement-card">
+                <i class="bi bi-card-checklist"></i>
+                <span>
+                    Licencia federal vigente
+                </span>
+            </div>
+
+            <div class="requirement-card">
+                <i class="bi bi-x-circle"></i>
+                <span>
+                    Que nunca hayan trabajado en ATAH
+                </span>
+            </div>
+
+            <div class="requirement-card">
+                <i class="bi bi-people"></i>
+                <span>
+                    Sexo indistinto
+                </span>
+            </div>
+
+            <div class="requirement-card">
+                <i class="bi bi-folder-check"></i>
+                <span>
+                    Documentos vigentes
+                </span>
+            </div>
+
+            <div class="requirement-card">
+                <i class="bi bi-geo-alt"></i>
+                <span>
+                    Apizaco y alrededores
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <!-- ALTA -->
+
+        <a href="{% url 'registro' %}"
+           class="stat-card text-decoration-none text-white">
+
+            <i class="bi bi-person-plus-fill"
+               style="font-size:55px;"></i>
+
+            <h2 class="mt-4">
+                Alta
+            </h2>
+
+            <p class="text-secondary">
+                Registrar nuevo operador
+            </p>
+
+        </a>
+
+        <!-- BAJA -->
+
+        <a href="/buscar/?modo=baja"
+           class="stat-card text-decoration-none text-white">
+
+            <i class="bi bi-person-dash-fill"
+               style="font-size:55px;"></i>
+
+            <h2 class="mt-4">
+                Baja
+            </h2>
+
+            <p class="text-secondary">
+                Dar de baja operadores
+            </p>
+
+        </a>
+
+        <!-- EDITAR -->
+
+        <a href="/buscar/?modo=editar"
+           class="stat-card text-decoration-none text-white">
+
+            <i class="bi bi-pencil-square"
+               style="font-size:55px;"></i>
+
+            <h2 class="mt-4">
+                Editar
+            </h2>
+
+            <p class="text-secondary">
+                Modificar información de operadores
+            </p>
+
+        </a>
+
+        <!-- BUSCAR -->
+
+        <a href="{% url 'buscar' %}"
+           class="stat-card text-decoration-none text-white">
+
+            <i class="bi bi-search"
+               style="font-size:55px;"></i>
+
+            <h2 class="mt-4">
+                Buscar
+            </h2>
+
+            <p class="text-secondary">
+                Consultar operadores registrados
+            </p>
+
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+.requirements-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.requirement-card{
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: 0.3s;
+}
+
+.requirement-card:hover{
+    transform: translateY(-4px);
+    border-color: #3b82f6;
+    box-shadow: 0 0 20px rgba(59,130,246,0.15);
+    background: #181818;
+}
+
+.requirement-card i{
+    font-size: 24px;
+    color: #60a5fa;
+}
+
+.requirement-card span{
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+</style>
+
+{% endblock %}
